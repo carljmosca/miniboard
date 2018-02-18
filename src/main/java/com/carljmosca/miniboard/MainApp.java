@@ -15,24 +15,33 @@ import javafx.util.Duration;
 
 public class MainApp extends Application {
 
-    private final String IMAGE_DIRECTORY = "/Users/moscac/Desktop";
-    private final String[] IMAGES = {"GrafeasDiagram.png", "test.png"};
+    private final String IMAGE_DIRECTORY = "/Users/moscac/Downloads/miniboard";
+    private final String[] IMAGES = {"2017-12-13 Loop.001.jpeg", "2017-12-13 Loop.002.jpeg",
+    "2017-12-13 Loop.003.jpeg", "2017-12-13 Loop.004.jpeg"
+    };
 
     @Override
     public void start(Stage primaryStage) {
+        //GoogleDriveUtility googleDriveUtility = new GoogleDriveUtility();
+        //googleDriveUtility.getFiles();
         ImageView imageView = new ImageView();
         Timeline timeline = new Timeline();
-        for (int i = 0; i < IMAGES.length; i++) {
-            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3 * i), new KeyValue(imageView.imageProperty(),
-                    new Image("file:" + IMAGE_DIRECTORY + "/" + IMAGES[i]))));
-        }
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(8), new KeyValue(imageView.imageProperty(), null)));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+//        for (int i = 0; i < IMAGES.length; i++) {
+//            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3 * i), new KeyValue(imageView.imageProperty(),
+//                    new Image("file:" + IMAGE_DIRECTORY + "/" + IMAGES[i]))));
+//        }
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), new KeyValue(imageView.imageProperty(),
+//                TextImageGenerator.textToImage( "test"))));
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(8), new KeyValue(imageView.imageProperty(), null)));
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.play();
+//        StackPane root = new StackPane();
+//        root.getChildren().add(imageView);
+        imageView = TextImageGenerator.textToImage("Hello World");
         StackPane root = new StackPane();
         root.getChildren().add(imageView);
-        imageView.fitWidthProperty().bind(primaryStage.widthProperty());
-        imageView.fitHeightProperty().bind(primaryStage.heightProperty());
+        //imageView.fitWidthProperty().bind(primaryStage.widthProperty());
+        //imageView.fitHeightProperty().bind(primaryStage.heightProperty());
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
         primaryStage.setFullScreen(true);
